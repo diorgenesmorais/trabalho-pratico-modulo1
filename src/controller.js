@@ -68,9 +68,26 @@ async function listMoreModels(req, res) {
     }
 }
 
+async function listLessModels(req, res) {
+    try {
+        const { amount } = req.params;
+        const data = await readJson();
+        const result = getOrderedList(data);
+        const reducer = result
+                            .filter((item, i) => i < amount)
+                            .map(({brand, total}) => {
+                                return `${brand} - ${total}`;
+                            });
+        res.send(reducer);
+    } catch (error) {
+        handlerError(res, error);
+    }
+}
+
 export {
     list,
     moreModels,
     lessModels,
-    listMoreModels
+    listMoreModels,
+    listLessModels
 }
