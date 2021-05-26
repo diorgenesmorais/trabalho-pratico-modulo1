@@ -9,10 +9,24 @@ async function readJson() {
     return JSON.parse(await fs.readFile('car-list.json'));
 }
 
+function getOrderedList(data) {
+    return data
+            .map(({brand, models}) => {
+                return {brand, models, total: models.length}
+            })
+            .sort((a, b) => {
+                if (a.total < b.total)
+                    return -1;
+                if (a.total > b.total)
+                    return 1
+                return 0
+            });
+}
+
 async function list(req, res) {
     try {
         const data = await readJson();
-        res.send(data);
+        res.send(getOrderedList(data));
     } catch (error) {
         handlerError(res, error);
     }
@@ -21,18 +35,18 @@ async function list(req, res) {
 async function moreModels(req, res) {
     try {
         const data = await readJson();
-        const result = data
-                        .map(({brand, models}) => {
-                            return {brand, models, total: models.length}
-                        })
-                        .sort((a, b) => {
-                            if (a.total < b.total)
-                                return -1;
-                            if (a.total > b.total)
-                                return 1
-                            return 0
-                        });
+        const result = getOrderedList(data);
         res.send(result[result.length - 1]);
+    } catch (error) {
+        handlerError(res, error);
+    }
+}
+
+async function lessModels(req, res) {
+    try {
+        const data = await readJson();
+        const result = getOrderedList(data);
+        res.send(result[0]);
     } catch (error) {
         handlerError(res, error);
     }
@@ -40,5 +54,6 @@ async function moreModels(req, res) {
 
 export {
     list,
-    moreModels
+    moreModels,
+    lessModels
 }
