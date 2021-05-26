@@ -1,6 +1,6 @@
 import pkg from 'express';
 const { Router } = pkg;
-import { list, moreModels, lessModels, listMoreModels, listLessModels } from './controller.js';
+import { list, moreModels, lessModels, listMoreModels, listLessModels, listModels } from './controller.js';
 
 const router = Router();
 
@@ -13,5 +13,7 @@ router.get('/marcas/menosModelos', lessModels);
 router.get('/marcas/listaMaisModelos/:amount', listMoreModels);
 
 router.get('/marcas/listaMenosModelos/:amount', listLessModels);
+
+router.post('/marcas/listaModelos', listModels);
 
 export default router;

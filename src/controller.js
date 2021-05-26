@@ -84,10 +84,27 @@ async function listLessModels(req, res) {
     }
 }
 
+async function listModels(req, res) {
+    try {
+        const { brand } = req.body;
+        const data = await readJson();
+        const list = getOrderedList(data);
+        const [ car ] = list
+                            .filter(car => {
+                                return car.brand.toLowerCase() === brand.toLowerCase();
+                            });
+        const result = car ? car.models : [];
+        res.send(result);
+    } catch (error) {
+        handlerError(res, error);
+    }
+}
+
 export {
     list,
     moreModels,
     lessModels,
     listMoreModels,
-    listLessModels
+    listLessModels,
+    listModels
 }
