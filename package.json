@@ -1,0 +1,23 @@
+{
+  "name": "trabalho-pratico-modulo1",
+  "version": "1.0.0",
+  "description": "API com leitura em arquivo json",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diorgenesmorais/trabalho-pratico-modulo1.git"
+  },
+  "author": "Diorgenes Morais <diorgenesmorais@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/diorgenesmorais/trabalho-pratico-modulo1/issues"
+  },
+  "homepage": "https://github.com/diorgenesmorais/trabalho-pratico-modulo1#readme",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
