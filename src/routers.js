@@ -4,16 +4,16 @@ import { list, moreModels, lessModels, listMoreModels, listLessModels, listModel
 
 const router = Router();
 
-router.get('/marcas', list);
+router.get('/', list);
 
-router.get('/marcas/maisModelos', moreModels);
+router.get('/maisModelos', moreModels);
 
-router.get('/marcas/menosModelos', lessModels);
+router.get('/menosModelos', lessModels);
 
-router.get('/marcas/listaMaisModelos/:amount', listMoreModels);
+router.get('/listaMaisModelos/:amount', listMoreModels);
 
-router.get('/marcas/listaMenosModelos/:amount', listLessModels);
+router.get('/listaMenosModelos/:amount', listLessModels);
 
-router.post('/marcas/listaModelos', listModels);
+router.post('/listaModelos', listModels);
 
 export default router;
