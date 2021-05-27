@@ -23,36 +23,36 @@ function getOrderedList(data) {
             });
 }
 
-async function list(req, res) {
+async function list(req, res, next) {
     try {
         const data = await readJson();
         res.send(getOrderedList(data));
     } catch (error) {
-        handlerError(res, error);
+        next(error);
     }
 }
 
-async function moreModels(req, res) {
+async function moreModels(req, res, next) {
     try {
         const data = await readJson();
         const result = getOrderedList(data);
         res.send(result[result.length - 1]);
     } catch (error) {
-        handlerError(res, error);
+        next(error);
     }
 }
 
-async function lessModels(req, res) {
+async function lessModels(req, res, next) {
     try {
         const data = await readJson();
         const result = getOrderedList(data);
         res.send(result[0]);
     } catch (error) {
-        handlerError(res, error);
+        next(error);
     }
 }
 
-async function listMoreModels(req, res) {
+async function listMoreModels(req, res, next) {
     try {
         const { amount } = req.params;
         const data = await readJson();
@@ -64,11 +64,11 @@ async function listMoreModels(req, res) {
                             });
         res.send(reducer);
     } catch (error) {
-        handlerError(res, error);
+        next(error);
     }
 }
 
-async function listLessModels(req, res) {
+async function listLessModels(req, res, next) {
     try {
         const { amount } = req.params;
         const data = await readJson();
@@ -80,11 +80,11 @@ async function listLessModels(req, res) {
                             });
         res.send(reducer);
     } catch (error) {
-        handlerError(res, error);
+        next(error);
     }
 }
 
-async function listModels(req, res) {
+async function listModels(req, res, next) {
     try {
         const { brand } = req.body;
         const data = await readJson();
@@ -96,7 +96,7 @@ async function listModels(req, res) {
         const result = car ? car.models : [];
         res.send(result);
     } catch (error) {
-        handlerError(res, error);
+        next(error);
     }
 }
 
